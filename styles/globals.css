@@ -14,3 +14,20 @@ a {
 * {
   box-sizing: border-box;
 }
+
+button {
+  font-family: Avenir Next,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  transition: .3s;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: none;
+}

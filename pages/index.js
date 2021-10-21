@@ -1,8 +1,33 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import styled from 'styled-components'
+import Web3 from 'web3'
+
+const ConnectWalletButton = styled.button`
+background: #784ffe;
+color: #fff;
+padding: 0 32px;
+height: 54px;
+line-height: 54px;
+
+:hover {
+    box-shadow: 0 0 0 4px rgba(120,79,254,.5);
+}
+`
 
 export default function Home() {
+  
+  const web3 = new Web3("https://bsc-dataseed.binance.org/" || "ws://localhost:8545");
+
+  const onWalletConnectClick = (e) =>  {
+    e.preventDefault();
+    console.log('Fetching web3 info...');
+    
+    web3.eth.getChainId().then(console.log);
+    web3.eth.getNodeInfo().then(console.log);
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -21,35 +46,7 @@ export default function Home() {
           <code className={styles.code}>pages/index.js</code>
         </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        <ConnectWalletButton onClick={onWalletConnectClick}>Connect Wallet</ConnectWalletButton>
       </main>
 
       <footer className={styles.footer}>
